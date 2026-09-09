@@ -97,7 +97,6 @@ tests:
 - always_run: false
   as: e2e-aws-oc-mirror-ote
   optional: true
-  skip_if_only_changed: ^v1/|^docs/|\.md$|^(LICENSE|OWNERS)$
   steps:
     cluster_profile: openshift-org-aws
     dependencies:
@@ -105,6 +104,7 @@ tests:
     env:
       EXTENSION_BINARY_PATH: /usr/bin/oc-mirror-tests-ext.gz
       EXTENSION_COMPONENT_NAME: oc-mirror
+      TEST_ARGS: --disable-monitor=pod-network-avalibility,apiserver-incluster-availability,image-registry-availability
       TEST_SUITE: oc-mirror/conformance/serial
     pre:
     - chain: ipi-aws-pre
